@@ -49,7 +49,6 @@ class CloudStatus(Static):
         output = ""
 
         for cloud in clouds:
-
             status = "🟢" if cloud["connected"] else "🔴"
 
             percent = self.usage_percent(
@@ -58,18 +57,18 @@ class CloudStatus(Static):
             )
 
             bar = self.make_bar(percent)
-        output += (
-            f"{status} {cloud['service']}\n"
-            f"Provider : {cloud.get('provider', '-')}\n"
-            f"Health   : {cloud.get('health', '-')}\n"
-            f"Last Scan: {cloud.get('last_check', '-')}\n"
-            f"Remote   : {cloud['remote']}\n"
-            f"Usage    : {bar} {percent:.1f}%\n"
-            f"Used     : {cloud['used']}\n"
-            f"Free     : {cloud['free']}\n"
-            f"Total    : {cloud['total']}\n\n"
-)
-        
+
+            output += (
+                f"{status} {cloud['service']}\n"
+                f"Provider : {cloud.get('provider', '-')}\n"
+                f"Health   : {cloud.get('health', '-')}\n"
+                f"Last Scan: {cloud.get('last_check', '-')}\n"
+                f"Remote   : {cloud['remote']}\n"
+                f"Usage    : {bar} {percent:.1f}%\n"
+                f"Used     : {cloud['used']}\n"
+                f"Free     : {cloud['free']}\n"
+                f"Total    : {cloud['total']}\n\n"
+            )
 
         output += (
             "🟡 Telegram      [Plugin Available]\n"
