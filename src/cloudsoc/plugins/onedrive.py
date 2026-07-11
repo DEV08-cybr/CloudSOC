@@ -1,5 +1,6 @@
-"""
-CloudSOC OneDrive Plugin
+"""CloudSOC OneDrive Plugin
+
+Provides a plugin for monitoring Microsoft OneDrive via rclone.
 """
 
 from .base import BasePlugin
@@ -10,25 +11,28 @@ class OneDrivePlugin(BasePlugin):
     """Plugin for monitoring OneDrive."""
 
     def __init__(self) -> None:
-
         super().__init__(
             name="OneDrive",
-            version="1.0",
+            version="1.0.0",
             author="DEEE",
-            description="Monitors OneDrive using rclone."
+            description="Monitors Microsoft OneDrive",
+            provider="Microsoft",
         )
 
-        self.remote = "1-DRIVE"
         self.rclone = RcloneService()
+        self.remote = self.rclone.find_remote("onedrive")
 
     def initialize(self) -> None:
         print("[OneDrive] Initializing plugin...")
 
     def connect(self) -> bool:
+        if not self.remote:
+            self.connected = False
+            return False
 
         remotes = self.rclone.list_remotes()
-
         self.connected = self.remote in remotes
+        self.update_health(self.connected)
 
         return self.connected
 
@@ -42,9 +46,10 @@ class OneDrivePlugin(BasePlugin):
 
         storage = self.rclone.about(self.remote)
 
-        return {
-            "service": self.name,
-            "connected": self.connected,
+        data = self.metadata()
+
+        data.update(
+        {
             "status": "Mounted" if self.connected else "Disconnected",
             "remote": self.remote,
             "used": storage.get("used", "Unknown"),
@@ -52,6 +57,9 @@ class OneDrivePlugin(BasePlugin):
             "total": storage.get("total", "Unknown"),
             "trashed": storage.get("trashed", "Unknown"),
         }
+    )
+
+        return data
 
     def shutdown(self) -> None:
         self.connected = False
