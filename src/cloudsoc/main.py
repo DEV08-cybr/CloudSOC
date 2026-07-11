@@ -1,5 +1,9 @@
+from cloudsoc.app import CloudSOC
+
+
 def main():
-    print("Hello from cloudsoc!")
+    app = CloudSOC()
+    app.run()
 
 
 if __name__ == "__main__":

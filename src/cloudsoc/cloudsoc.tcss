@@ -1,0 +1,25 @@
+Screen {
+    background: black;
+}
+
+Horizontal {
+    height: 1fr;
+}
+
+#left {
+    width: 30%;
+    border: solid cyan;
+    padding: 1;
+}
+
+#right {
+    width: 70%;
+    border: solid green;
+    padding: 1;
+}
+
+#logs {
+    height: 8;
+    border: solid yellow;
+    padding: 1;
+}
