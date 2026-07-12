@@ -40,5 +40,17 @@ Horizontal {
 }
 
 #cloud {
-    background: rgb(67, 67, 67);
+    background: rgb(3, 3, 3);
+}
+#splash_logo {
+    content-align: center middle;
+    text-style: bold;
+    color: cyan;
+    margin-top: 3;
+}
+
+#loading_text {
+    content-align: center middle;
+    color: white;
+    margin-top: 2;
 }

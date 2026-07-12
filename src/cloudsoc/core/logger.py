@@ -46,8 +46,11 @@ class EventLogger:
     def critical(self, source: str, message: str):
         return self.log("CRITICAL", source, message)
 
+    def get_events(self):
+        return list(self.events)
+
     def latest(self, count: int = 20):
-        return list(self.events)[-count:]
+        return self.get_events()[-count:]
 
     def clear(self):
         self.events.clear()

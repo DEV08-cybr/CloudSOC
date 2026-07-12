@@ -59,3 +59,10 @@ class PluginManager:
 
     def collect_all(self):
         return [plugin.collect() for plugin in self.plugins]
+    
+    def has_configured_plugins(self) -> bool:
+        """Return True if at least one plugin has a configured remote."""
+        for plugin in self.plugins:
+            if getattr(plugin, "remote", None):
+                return True
+        return False
