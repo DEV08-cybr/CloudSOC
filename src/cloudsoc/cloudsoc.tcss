@@ -40,5 +40,5 @@ Horizontal {
 }
 
 #cloud {
-    background: rgb(10, 12, 14);
+    background: rgb(67, 67, 67);
 }

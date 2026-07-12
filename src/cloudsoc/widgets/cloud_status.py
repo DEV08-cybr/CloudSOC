@@ -2,12 +2,14 @@ from textual.widgets import Static
 
 from cloudsoc.plugins.manager import PluginManager
 
+from cloudsoc.detectors.storage_detector import StorageDetector
 
 class CloudStatus(Static):
     """Displays cloud status using PluginManager."""
 
     def on_mount(self) -> None:
         self.manager = PluginManager()
+        self.detector = StorageDetector()
         self.set_interval(2, self.update_status)
         self.update_status()
 
@@ -45,7 +47,8 @@ class CloudStatus(Static):
         self.manager.connect_all()
 
         clouds = self.manager.collect_all()
-
+        for cloud in clouds:
+            self.detector.check(cloud)
         output = ""
 
         for cloud in clouds:

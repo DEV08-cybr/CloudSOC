@@ -1,6 +1,7 @@
 from textual.app import App, ComposeResult
 from textual.containers import Horizontal, Vertical
 from textual.widgets import Header, Footer, Static
+from cloudsoc.widgets.log_panel import LogPanel
 
 from cloudsoc.widgets.system_stats import SystemStats
 from cloudsoc.widgets.cloud_status import CloudStatus
@@ -26,10 +27,7 @@ class CloudSOC(App):
                 with Vertical(id="right"):
                     yield CloudStatus(id="cloud")
 
-            yield Static(
-                "CloudSOC Started...",
-                id="logs"
-            )
+            yield LogPanel(id="logs")
 
         yield Footer()
 
