@@ -1,27 +1,24 @@
-[build-system]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "cloudsoc"
 version = "0.1.0"
-description = "Terminal Cloud Security Operations Center"
+description = "Cloud Security Operations Center"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {file = "LICENSE"}
-
-authors = [
-    {name = "DEV08-cybr"}
-]
 
 dependencies = [
     "textual>=5.3.0",
     "rich>=14.0.0",
-    "psutil>=7.0.0"
+    "psutil>=7.0.0",
 ]
 
-[tool.setuptools]
-package-dir = {"" = "src"}
+[project.urls]
+Homepage = "https://github.com/DEV08-cybr/CloudSOC"
+Repository = "https://github.com/DEV08-cybr/CloudSOC"
+Issues = "https://github.com/DEV08-cybr/CloudSOC/issues"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
